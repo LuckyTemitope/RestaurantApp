@@ -1,0 +1,95 @@
+<nav class="navbar navbar-light bg-primary">
+  <div class="container-fluid">
+    <h2>Restaurant Record App</h2>
+    <div class="d-flex">
+      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="clickAddRestaurant()">
+        Add Restaurant
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Jumbotron -->
+<div class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">Restaurant Record Management</h1>
+    <p class="col-md-8 fs-4">You can save Records of Restaurants Using Angular 13</p>
+    <a class="btn btn-primary btn-lg" type="button" href="luckytemitope.com" target="_blank">Lucky Temitope</a>
+  </div>
+</div>
+
+<!-- Table Display -->
+<table class="table mt-4">
+  <thead>
+    <tr>
+      <th scope="col">Restaurant ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Mobile</th>
+      <th scope="col">Address</th>
+      <th scope="col">Services</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let restaurant of allRestaurants">
+      <td>{{ restaurant.id}}</td>
+      <td>{{ restaurant.name }}</td>
+      <td>{{ restaurant.email }}</td>
+      <td>{{ restaurant.mobile }}</td>
+      <td>{{ restaurant.address }}</td>
+      <td>{{ restaurant.services }}</td>
+      <td>
+        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editRestaurant(restaurant)">Edit</button> &nbsp;
+        <button class="btn btn-danger" (click)="deleteRestaurant(restaurant)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+
+</table>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Restaurant Record Form</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue">
+          <div class="mb-3">
+            <label for="restaurantName" class="form-label">Name</label>
+            <input type="text" formControlName="name" class="form-control" id="restaurantName" placeholder="Restaurant Name">
+          </div>
+          <div class="mb-3">
+            <label for="restaurantEmail" class="form-label">Email address</label>
+            <input type="email" formControlName="email" class="form-control" id="restaunrantEmail" placeholder="Restaurant Email Address">
+          </div>
+          <div class="mb-3">
+            <label for="restaurantMobile" class="form-label">Mobile</label>
+            <input type="tel" formControlName="mobile" class="form-control" id="resturantMobile" placeholder="Restaurant Phone Number">
+          </div>
+          <div class="mb-3">
+            <label for="restaurantAddress" class="form-label">Address</label>
+            <input type="address" formControlName="address" class="form-control" id="resturantAddress" placeholder="Restaurant Address">
+          </div>
+          <div class="mb-3">
+            <label for="restaurantServices" class="form-label">Services</label>
+            <input type="text" formControlName="services" class="form-control" id="restaurantServices" placeholder="Restaurant Services">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addRestaurant()" *ngIf="showAdd">Add Details</button>
+        <button type="button" class="btn btn-success" (click)="updateRestaurant()" *ngIf="showBtn">Update Details</button>
+      </div>
+    </div>
+  </div>
+</div>
