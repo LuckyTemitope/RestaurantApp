@@ -7,10 +7,14 @@ import { RestaurantDashComponent } from './restaurant-dash/restaurant-dash.compo
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 @NgModule({
   declarations: [
     AppComponent,
-    RestaurantDashComponent
+    RestaurantDashComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

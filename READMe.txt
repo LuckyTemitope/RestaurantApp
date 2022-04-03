@@ -16,6 +16,7 @@ Steps to Creating the Projects
 11. Create a function to get all the Restaurants
 12. Create a function to delete a Restaurant
 13. Create a function to edit a Restaurant
+14. Setup Login and Signup Components
 
 
 # To start json-server: npx json-server --watch db.json
