@@ -3,6 +3,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ApiService } from '../shared/api.service';
 import { RestaurantData } from './restaurant.model';
 
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+
+
 @Component({
   selector: 'app-restaurant-dash',
   templateUrl: './restaurant-dash.component.html',
@@ -15,7 +19,7 @@ export class RestaurantDashComponent implements OnInit {
   showAdd!: boolean;
   showBtn!: boolean;
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService) {}
+  constructor(private formBuilder: FormBuilder, private api: ApiService, public afAuth: AngularFireAuth) {}
 
   ngOnInit(): void {
     this.formValue = this.formBuilder.group({
@@ -97,7 +101,9 @@ export class RestaurantDashComponent implements OnInit {
       this.formValue.reset();
       this.getRestaurants();
     })
+  }
 
-
+  logout():void {
+    this.afAuth.signOut();
   }
 }

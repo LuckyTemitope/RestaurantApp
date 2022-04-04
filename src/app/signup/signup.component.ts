@@ -1,7 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+
+import { AuthService } from '../shared/services/auth.service';
 import { UserService } from '../shared/user.service';
 
 @Component({
@@ -11,33 +15,52 @@ import { UserService } from '../shared/user.service';
 })
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
+  firebaseErrorMessage!: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private authService: AuthService,
+    public afAuth: AngularFireAuth
+  ) {
+    this.firebaseErrorMessage = '';
+  }
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
-      name: [''],
-      email: [''],
-      mobile: [''],
-      password: [''],
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
     });
   }
 
   // Make method to create user
   signup() {
-    this.userService.addUser(this.signupForm.value).subscribe(
-      (res) => {
-        alert('Registration Successful');
-        this.signupForm.reset();
-        this.router.navigate(['login']);
-      },
-      (error) => {
-        alert('Error: ' + error.message);
+
+    if(this.signupForm.invalid){
+      return;
+    }
+
+    this.authService.signupUser(this.signupForm.value).then((result: any) => {
+      if (result == null) {
+        this.router.navigate(['/restaurant']);
+      } else if(result.isValid === false) {
+        this.firebaseErrorMessage = result.message;
       }
-    );
+      }).catch(() => {
+
+      })
+
+    // this.userService.addUser(this.signupForm.value).subscribe(
+    //   (res) => {
+    //     alert('Registration Successful');
+    //     this.signupForm.reset();
+    //     this.router.navigate(['login']);
+    //   },
+    //   (error) => {
+    //     alert('Error: ' + error.message);
+    //   }
+    // );
   }
 }
