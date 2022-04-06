@@ -13,6 +13,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   firebaseErrorMessage!: string;
+  hide = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,35 +23,41 @@ export class LoginComponent implements OnInit {
     private authService: AuthService
   ) {
 
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-    });
 
     this.firebaseErrorMessage = '';
   }
 
   ngOnInit(): void {
 
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    });
+
   }
 
   login() {
+    console.log('login');
 
     if (this.loginForm.invalid){
+      alert('Form Invalid')
       return;
     }
 
-    this.authService.loginUser(this.loginForm.value.email , this.loginForm.value.password).then((result: any) => {
-      if (result == null) {     // null means it worked. It went through
+    this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).then((result: any) => {
+      if (result !== null) {     // null means it worked. It went through
+        console.log(result);
         console.log('logging in...');
         this.router.navigate(['/restaurant']);    // when the user is logged in navigate to the restaurant dashboard page
       } else if (result.isValid === false) {
         console.error('login error: ', result);
         this.firebaseErrorMessage = result.message;
       }
-    }).catch(() => {})
+    }).catch((e) => {
+      console.log(e);
+    })
 
-
+    console.log('loginForm: ', this.loginForm.value);
     // this._http.get<any>('http://localhost:3000/signup').subscribe(
     //   (res) => {
     //     const user = res.find(
