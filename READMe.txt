@@ -20,3 +20,22 @@ Steps to Creating the Projects
 
 
 # To start json-server: npx json-server --watch db.json
+
+########
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBICG6c_5Dlp67odFRDMiMhIYYGep99-6M",
+  authDomain: "restaurant-record-app.firebaseapp.com",
+  projectId: "restaurant-record-app",
+  storageBucket: "restaurant-record-app.appspot.com",
+  messagingSenderId: "32404907635",
+  appId: "1:32404907635:web:fb7d90e6ca5420ff96ec06"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);

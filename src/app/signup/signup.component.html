@@ -1,4 +1,9 @@
+
+
 <div class="container">
+  <button class="btn btn-primary" [routerLink]="['/home']">
+    Home
+  </button>
   <div class="row">
     <div class="col-md-6 card-container">
       <div class="card">
@@ -17,12 +22,12 @@
             <input formControlName="email" placeholder="Email address" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
           </div>
           <div class="mb-3">
-            <label class="form-label">Mobile Number</label>
-            <input formControlName="mobile" placeholder="Mobile Number" type="tel" class="form-control" id="mobile">
-          </div>
-          <div class="mb-3">
             <label class="form-label">Password</label>
             <input formControlName="password" placeholder="Password" type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+
+          <div *ngIf="firebaseErrorMessage != ''" class="error-style">
+              <span>{{ firebaseErrorMessage }}</span>
           </div>
 
           <button type="submit" class="btn btn-primary">Signup</button>

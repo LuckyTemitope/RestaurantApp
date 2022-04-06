@@ -1,14 +1,23 @@
-import { RestaurantDashComponent } from './restaurant-dash/restaurant-dash.component';
+import { AuthGuard } from './shared/services/auth.guard';
+
 import { NgModule } from '@angular/core';
+
+import { RestaurantDashComponent } from './restaurant-dash/restaurant-dash.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { HomeComponent } from './home/home.component';
+
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'restaurant',
+    redirectTo: 'home',
     pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
   },
   {
     path: 'login',
@@ -20,8 +29,11 @@ const routes: Routes = [
   },
   {
     path: 'restaurant',
-    component: RestaurantDashComponent,
-  },
+    component: RestaurantDashComponent, canActivate: [AuthGuard],
+  },{
+    path: '**',
+    component: HomeComponent,
+  }
 ];
 
 @NgModule({
