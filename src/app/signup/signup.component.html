@@ -1,41 +1,44 @@
 
+<div class="signup-main-container">
 
-<div class="container">
-  <button class="btn btn-primary" [routerLink]="['/home']">
-    Home
-  </button>
-  <div class="row">
-    <div class="col-md-6 card-container">
-      <div class="card">
-         <div class="text-center">
-          <h1>Restaurant Signup</h1>
-          <h5>Get free membership</h5>
-         </div>
+  <div class="container">
+    <button class="btn btn-primary" [routerLink]="['/home']">
+      Home
+    </button>
+    <div class="row">
+      <div class="col-md-6 card-container">
+        <div class="card">
+           <div class="text-center">
+            <h1>Signup</h1>
+            <h5>Get free membership</h5>
+           </div>
 
-         <form [formGroup]="signupForm" (ngSubmit)="signup()">
-          <div class="mb-3">
-            <label class="form-label">Name</label>
-            <input formControlName="name" placeholder="Name" type="text" class="form-control" id="name">
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Email address</label>
-            <input formControlName="email" placeholder="Email address" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Password</label>
-            <input formControlName="password" placeholder="Password" type="password" class="form-control" id="exampleInputPassword1">
-          </div>
+           <form [formGroup]="signupForm" (ngSubmit)="signup()">
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input formControlName="name" placeholder="Name" type="text" class="form-control" id="name">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email address</label>
+              <input formControlName="email" placeholder="Email address" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input formControlName="password" placeholder="Password" type="password" class="form-control" id="exampleInputPassword1">
+            </div>
 
-          <div *ngIf="firebaseErrorMessage != ''" class="error-style">
-              <span>{{ firebaseErrorMessage }}</span>
-          </div>
+            <div *ngIf="firebaseErrorMessage != ''" class="error-style">
+                <span>{{ firebaseErrorMessage }}</span>
+            </div>
 
-          <button type="submit" class="btn btn-primary">Signup</button>
-        </form>
+            <button type="submit" class="btn btn-primary">Signup</button>
+          </form>
 
-        <p>Have an account already? <a [routerLink]="['/login']">Login Now</a></p>
+          <p>Have an account already? <a [routerLink]="['/login']">Login Now</a></p>
 
+        </div>
       </div>
     </div>
   </div>
+
 </div>

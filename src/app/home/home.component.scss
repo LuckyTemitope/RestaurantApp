@@ -1,4 +1,79 @@
 .tabs {
   margin-left: auto;
-  margin-right: 10%;
+  // margin-right: 5%;
 }
+
+.landing-page-container {
+  width: 100%;
+  height: 100vh;
+
+  background-position: center;
+  background-size: cover;
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5),  rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../../assets/Images/restaurant-bg.jpeg);
+  background-color: rgb(0, 0, 0);
+  color: white;
+
+  .navbar {
+    background: none !important;
+  }
+
+
+  .main-landing-page-content {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  }
+
+    h1 {
+      font-weight: bold;
+      font-size: 3em;
+    }
+
+    .not-logged-in {
+      color: white;
+      padding: 0.5em 2em;
+      border-radius: 0.5em;
+      border: none;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      margin: 0 auto;
+    }
+
+    .arrow {
+      margin-left: 0.3em;
+      animation: bouncey 1s ease infinite;
+    }
+
+    .dashboard-btn {
+      margin-right: 0.3em;
+    }
+
+    .not-logged-in:hover {
+      // text-decoration: underline;
+      font-weight: bold;
+    }
+}
+
+@keyframes bouncey {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.login-signup-btns {
+  display: flex;
+}
+
+
+

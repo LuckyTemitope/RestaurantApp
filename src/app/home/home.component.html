@@ -1,42 +1,70 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['/restaurant']">Dashboard</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav tabs">
 
-        <a class="nav-link" [routerLink]="['/login']">
-          <button class="btn btn-primary">Login</button>
-        </a>
-        <a class="nav-link" [routerLink]="['/signup']">
-          <button class="btn btn-success">Signup</button>
-        </a>
+<div class="landing-page-container">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" [routerLink]="['/restaurant']"  *ngIf="( afAuth.user | async)">Dashboard</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav tabs">
+
+          <div class="login-signup-btns" *ngIf="!( afAuth.user | async)">
+
+            <a class="nav-link" [routerLink]="['/login']">
+              <button class="btn btn-primary">Login</button>
+            </a>
+            <a class="nav-link" [routerLink]="['/signup']">
+              <button class="btn btn-success">Signup</button>
+            </a>
+
+          </div>
+
+          <div *ngIf="( afAuth.user | async)" >
+            <a class="nav-link" (click)="logout()">
+              <button class="btn btn-danger">Logout</button>
+            </a>
+          </div>
+
+      </div>
       </div>
     </div>
+  </nav>
+
+  <div class="main-landing-page-content">
+
+  <div class="main-landing-page">
+    <div class="container">
+      <div class="landing-page">
+        <h1>Welcome to the <br/> Restaurant Records App</h1>
+      </div>
+
+      <div *ngIf="( afAuth.user | async)" >
+     
+        <button class="btn btn-success dashboard-btn" [routerLink]="['/restaurant']" >
+          Go to Dashboard
+        </button>
+        <button class="btn btn-danger" (click)="logout()">
+          Log out
+        </button>
+
+      </div>
+
+      <div *ngIf="!( afAuth.user | async)" >
+
+      <button class="not-logged-in btn btn-success" [routerLink]="['/login']">
+        Login to Continue
+        <span class="material-symbols-outlined arrow">
+          chevron_right
+          </span>
+      </button>
+      </div>
+    </div>
+
   </div>
-</nav>
 
-<div class="container">
-  <div class="landing-page">
-    <h1>Welcome to the Restaurant Records App</h1>
-  </div>
 
-  <div *ngIf="( afAuth.user | async)">
-    User is logged in
-
-    <br>
-
-    <button class="btn btn-danger" (click)="logout()">
-      Log out
-    </button>
-
-  </div>
-
-  <div *ngIf="!( afAuth.user | async)">
-    User is not logged in
   </div>
 
 </div>

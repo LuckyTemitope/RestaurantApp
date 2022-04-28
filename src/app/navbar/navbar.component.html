@@ -7,13 +7,23 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav tabs">
 
-        <a class="nav-link" [routerLink]="['/login']">
-          <button class="btn btn-primary">Login</button>
-        </a>
-        <a class="nav-link" [routerLink]="['/signup']">
-          <button class="btn btn-success">Signup</button>
+        <div class="login-signup-btns" *ngIf="!( afAuth.user | async)">
+          <a class="nav-link" [routerLink]="['/login']">
+            <button class="btn btn-primary">Login</button>
           </a>
+
+          <a class="nav-link" [routerLink]="['/signup']">
+            <button class="btn btn-success">Sign up</button>
+            </a>
+        </div>
+
+        <
+
       </div>
+
     </div>
+
+
+
   </div>
 </nav>
