@@ -5,4 +5,5 @@ export class RestaurantData {
   mobile: string = '';
   address: string = '';
   services: string = '';
+  review: number = 0;
 }

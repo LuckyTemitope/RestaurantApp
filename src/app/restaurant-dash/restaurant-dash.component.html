@@ -1,4 +1,8 @@
-<nav class="navbar navbar-light bg-primary">
+
+<section>
+
+
+<nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
     <a routerLink="home">
       <h2>Restaurant Record App</h2>
@@ -19,40 +23,65 @@
   <div class="container-fluid py-5">
     <h1 class="display-5 fw-bold">Restaurant Record Management</h1>
     <p class="col-md-8 fs-4">You can save Records of Restaurants in the City</p>
-    <a class="btn btn-primary btn-lg" type="button" href="luckytemitope.com" target="_blank">Lucky Temitope</a>
   </div>
 </div>
 
-<!-- Table Display -->
-<table class="table mt-4">
-  <thead>
-    <tr>
-      <th scope="col">Restaurant ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Mobile</th>
-      <th scope="col">Address</th>
-      <th scope="col">Services</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
 
-  <tbody *ngIf="allRestaurants.length > 0">
-    <tr *ngFor="let restaurant of allRestaurants">
-      <td>{{ restaurant.id}}</td>
-      <td>{{ restaurant.name }}</td>
-      <td>{{ restaurant.email }}</td>
-      <td>{{ restaurant.mobile }}</td>
-      <td>{{ restaurant.address }}</td>
-      <td>{{ restaurant.services }}</td>
-      <td>
-        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editRestaurant(restaurant)">Edit</button> &nbsp;
-        <button class="btn btn-danger" (click)="deleteRestaurant(restaurant)">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<p *ngIf="allRestaurants.length <= 0">No Restaurants record added yet.</p>
+<div class="container details-container">
+<!-- Table Display -->
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th scope="col">Restaurant ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Mobile</th>
+        <th scope="col">Address</th>
+        <th scope="col">Services</th>
+        <th scope="col">Review</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+
+    <tbody *ngIf="allRestaurants.length > 0">
+      <tr *ngFor="let restaurant of allRestaurants">
+        <td>{{ restaurant.id}}</td>
+        <td>{{ restaurant.name }}</td>
+        <td>{{ restaurant.email }}</td>
+        <td>{{ restaurant.mobile }}</td>
+        <td>{{ restaurant.address }}</td>
+        <td>{{ restaurant.services }}</td>
+        <td>
+          <div class="review">
+
+            {{ restaurant.review }}
+              <span class="material-symbols-outlined">
+                star
+                </span>
+          </div>
+        </td>
+        <td>
+          <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editRestaurant(restaurant)">
+            <span class="material-symbols-outlined">
+              edit
+              </span>
+          </button> &nbsp;
+          <button class="btn btn-danger" (click)="deleteRestaurant(restaurant)">
+            <span class="material-symbols-outlined">
+              delete
+              </span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="allRestaurants.length <= 0">No Restaurants record added yet.</p>
+</div>
+
+
+<footer>
+
+</footer>
 
 
 
@@ -86,14 +115,20 @@
             <label for="restaurantServices" class="form-label">Services</label>
             <input type="text" formControlName="services" class="form-control" id="restaurantServices" placeholder="Restaurant Services">
           </div>
+          <div class="mb-3">
+            <label for="restaurantReview" class="form-label">Reviews</label>
+            <input type="number" min="1" max="5" formControlName="review" class="form-control" id="restaurantReview" placeholder="Restaurant Review">
+          </div>
 
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="addRestaurant()" *ngIf="showAdd">Add Details</button>
-        <button type="button" class="btn btn-success" (click)="updateRestaurant()" *ngIf="showBtn">Update Details</button>
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal" >Close</button>
+        <button type="button" class="btn btn-primary" (click)="addRestaurant()" *ngIf="showAdd" disable="formValue.invalid">Add Details</button>
+        <button type="button" class="btn btn-success" (click)="updateRestaurant()" *ngIf="showBtn"  disable="formValue.invalid">Update Details</button>
       </div>
     </div>
   </div>
 </div>
+
+</section>

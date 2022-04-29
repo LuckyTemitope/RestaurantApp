@@ -52,31 +52,13 @@ export class LoginComponent implements OnInit {
       } else if (result.isValid === false) {
         console.error('login error: ', result);
         this.firebaseErrorMessage = result.message;
+      } else {
+        this.router.navigate(['/signup']);
       }
     }).catch((e) => {
       console.log(e);
     })
 
     console.log('loginForm: ', this.loginForm.value);
-    // this._http.get<any>('http://localhost:3000/signup').subscribe(
-    //   (res) => {
-    //     const user = res.find(
-    //       (s: any) =>
-    //         s.email === this.loginForm.value.email &&
-    //         s.password === this.loginForm.value.password
-    //     );
-
-    //     if (user) {
-    //       alert(`User ${user.name} logged in successfully`);
-    //       this.loginForm.reset();
-    //       this.router.navigate(['/restaurant']);
-    //     } else {
-    //       alert(`Error logging in`);
-    //     }
-    //   },
-    //   (err) => {
-    //     alert('Error: ' + err);
-    //   }
-    // );
-  }
+   }
 }
