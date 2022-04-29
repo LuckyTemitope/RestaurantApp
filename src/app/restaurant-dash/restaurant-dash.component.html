@@ -117,15 +117,15 @@
           </div>
           <div class="mb-3">
             <label for="restaurantReview" class="form-label">Reviews</label>
-            <input type="number" formControlName="review" class="form-control" id="restaurantReview" placeholder="Restaurant Review">
+            <input type="number" min="1" max="5" formControlName="review" class="form-control" id="restaurantReview" placeholder="Restaurant Review">
           </div>
 
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="addRestaurant()" *ngIf="showAdd">Add Details</button>
-        <button type="button" class="btn btn-success" (click)="updateRestaurant()" *ngIf="showBtn">Update Details</button>
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal" >Close</button>
+        <button type="button" class="btn btn-primary" (click)="addRestaurant()" *ngIf="showAdd" disable="formValue.invalid">Add Details</button>
+        <button type="button" class="btn btn-success" (click)="updateRestaurant()" *ngIf="showBtn"  disable="formValue.invalid">Update Details</button>
       </div>
     </div>
   </div>

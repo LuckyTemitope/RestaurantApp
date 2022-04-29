@@ -28,6 +28,7 @@ export class RestaurantDashComponent implements OnInit {
       mobile: [''],
       address: [''],
       services: [''],
+      review: ['']
     });
 
     this.getRestaurants();
@@ -46,6 +47,7 @@ export class RestaurantDashComponent implements OnInit {
     this.restaurantModelObject.mobile = this.formValue.value.mobile;
     this.restaurantModelObject.address = this.formValue.value.address;
     this.restaurantModelObject.services = this.formValue.value.services;
+    this.restaurantModelObject.review = this.formValue.value.review;
 
     this.api.addRestaurant(this.restaurantModelObject).subscribe(
       (res) => {
